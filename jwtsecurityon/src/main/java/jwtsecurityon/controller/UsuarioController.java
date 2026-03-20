@@ -1,5 +1,6 @@
 package jwtsecurityon.controller;
 
+import jakarta.validation.Valid;
 import jwtsecurityon.dto.EntradaUsuarioDTO;
 import jwtsecurityon.entity.Usuario;
 import jwtsecurityon.repository.UsuarioRepository;
@@ -17,7 +18,7 @@ public class UsuarioController {
 
 
     @PostMapping
-    private EntradaUsuarioDTO salvar(@RequestBody EntradaUsuarioDTO dados){
+    private EntradaUsuarioDTO salvar(@RequestBody @Valid EntradaUsuarioDTO dados){
        var user=usuarioRepository.save(new Usuario(dados));
        return new EntradaUsuarioDTO(user);
 
