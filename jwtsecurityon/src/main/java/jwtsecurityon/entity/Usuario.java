@@ -1,11 +1,6 @@
 package jwtsecurityon.entity;
-
 import jakarta.persistence.*;
 import jwtsecurityon.dto.EntradaUsuarioDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -14,12 +9,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(unique = true)
     private String senha;
 
     public Usuario() {
     }
 
-    public Usuario(EntradaUsuarioDTO dados) {
+    public Usuario(EntradaUsuarioDTO dados){
+        this.id=dados.id();
         this.nome=dados.nome();
         this.senha= dados.senha();
     }
