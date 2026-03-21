@@ -1,5 +1,6 @@
 package jwtsecurityon.dto;
 
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jwtsecurityon.entity.Usuario;
@@ -11,10 +12,15 @@ public record EntradaUsuarioDTO(
         @NotBlank
         String nome,
         @NotBlank
-        String senha) {
+        String senha,
+        @Enumerated
+        String role) {
+
     public EntradaUsuarioDTO(Usuario user) {
         this(user.getId(),
-                user.getNome(),
-                user.getSenha());
+            user.getNome(),
+            user.getSenha(),
+                user.getRole());
+
     }
 }
